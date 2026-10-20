@@ -1,0 +1,54 @@
+WARNING: File `gltest.config.yaml` not found in the current directory, using default config, create a `gltest.config.yaml` file to manage multiple networks
+INFO: Using the following configuration:
+INFO:   RPC URL: http://127.0.0.1:4000/api
+INFO:   Selected Network: localnet
+INFO:   Available networks: ['localnet', 'studionet', 'testnet_asimov', 'testnet_bradbury']
+INFO:   Selected chain type: localnet
+INFO:   Available chains: localnet, studionet, testnet_asimov, testnet_bradbury
+INFO:   Contracts directory: contracts
+INFO:   Artifacts directory: artifacts
+INFO:   Environment: .env
+INFO:   Default wait interval: 3000 ms
+INFO:   Default wait retries: 50
+INFO:   Leader only mode: False
+F                                                                        [100%]
+================================== FAILURES ===================================
+__________ test_authorization_requires_assessment_votes_and_deadline __________
+
+direct_vm = VMContext(_sender=b'\xdc\x18\xaa=\xb8\xbc\x91\xa6\xe3\x90\xa3^}\x08\x11$o\xf3\xab\x01', _origin=None, _contract_addres...m_mocks_hit=set(), _live_web_handler=None, _live_llm_handler=None, _gl_call_hook=None, _traces=[], _trace_enabled=True)
+direct_deploy = <function direct_deploy.<locals>._deploy at 0x00000292D30EEDE0>
+
+    def test_authorization_requires_assessment_votes_and_deadline(direct_vm,direct_deploy):
+        """Catches missing consensus, quorum/deadline gates or finalization state."""
+        c = deployed(direct_vm,direct_deploy)
+>       pid = ready(direct_vm,c)
+              ^^^^^^^^^^^^^^^^^^
+
+tests\test_governance.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests\test_governance.py:29: in ready
+    pid = proposal(c)
+          ^^^^^^^^^^^
+tests\test_governance.py:18: in proposal
+    return c.propose("docs-grants-v1", "Approve 80 units to translate public SDK documentation.", "Public issue describes translation scope and an 80-unit cap.", 600, 300)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\tooling\.venv\Lib\site-packages\gltest\direct\loader.py:432: in _wrapped
+    return attr(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <_contract_governance_mandate.GovernanceMandate object at 0x00000292D31D5F40>
+target = 'docs-grants-v1'
+action = 'Approve 80 units to translate public SDK documentation.'
+evidence = 'Public issue describes translation scope and an 80-unit cap.'
+voting_seconds = 600, challenge_seconds = 300
+
+    @gl.public.write
+    def propose(self, target: str, action: str, evidence: str, voting_seconds: int, challenge_seconds: int) -> str:
+>       raise gl.vm.UserError("NOT_IMPLEMENTED")
+E       genlayer.gl.vm.UserError: UserError(message='NOT_IMPLEMENTED')
+
+governance_mandate.py:10: UserError
+=========================== short test summary info ===========================
+FAILED tests/test_governance.py::test_authorization_requires_assessment_votes_and_deadline
+1 failed in 0.58s

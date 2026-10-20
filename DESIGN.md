@@ -1,0 +1,11 @@
+# GovernanceMandate design and test plan
+
+AI-assisted prototype, 2026-10-21. Independent IC contribution; not used as a Project extract. The integration consumes a finalized authorization record, never sends real funds through this prototype.
+
+An owner publishes immutable charter versions (text, SHA-256, version, owner), configures a bounded electorate and an absolute YES quorum. A proposal snapshots the exact charter version, text/hash, electorate, quorum and vote/challenge deadlines. The author supplies an action and bounded evidence. Each validator independently re-evaluates the same immutable charter/action/evidence using its own LLM execution. Only a matching normalized YES/IN_SCOPE decision opens voting; NO and UNCERTAIN reject. JSON shape alone cannot produce consensus.
+
+Every snapshotted address votes once. Votes are YES/NO/ABSTAIN; approval requires YES >= fixed quorum and YES > NO. Only electorate members may challenge during a separate post-voting window. The first challenge supplies additional immutable evidence, immediately suspends approval, and triggers a second independent assessment; any uncertain or negative outcome blocks authorization. Challenge evidence and proposal evidence are untrusted data, never instructions. No arbitrary generated code, URLs, dynamic imports or transfers.
+
+Finalization requires the challenge deadline, a resolved YES assessment, quorum and an unchanged current charter version. Charter upgrades cannot swap the rules beneath proposals: their original evidence remains inspectable, and old versions become STALE/inactive. No repeat finalization. Integrators must bind target/audience and read the final record plus current charter; this is a governance coordination primitive, not autonomous asset custody.
+
+Tests run the actual deployable file through official direct mode with external LLM boundaries mocked: positive/negative/uncertain results, malformed output, independent validator divergence and forged leader rejection, version/hash binding, unauthorized owner/author/elector, snapshots, duplicate votes, threshold/tie, deadline boundaries, unresolved and rejected challenges, and repeated finalization. Live multi-validator consensus remains unverified until root records a real deployment/transaction.

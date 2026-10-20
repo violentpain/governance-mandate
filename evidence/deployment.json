@@ -1,0 +1,40 @@
+{
+  "recorded_at": "2026-10-20T18:19:33.026Z",
+  "network": "GenLayer Studionet",
+  "chain_id": 61999,
+  "execution_mode": "Normal (Full Consensus)",
+  "deployer": "0x30e3892feeE48f8fa96FB272ae6d9d274940B11b",
+  "name": "GovernanceMandate",
+  "file": "governance_mandate.py",
+  "sourceSha256": "a7dae2a86945857a25f6d096c835d7fe1dcbfe3a0117f4f86841d7440c89aead",
+  "contract": "0x66f37C0B2565E6A49e206A58CEe28C0E027f3d97",
+  "transaction": "0x92c85d45f61a5913ec0a531ba07c8713d3cea5ae2914d440afc8b72af04f5f8d",
+  "status": "FINALIZED",
+  "result": "SUCCESS",
+  "constructorArgs": [
+    "The committee may approve public SDK documentation grants up to 100 units. Private marketing and charter amendments are outside its authority.",
+    [
+      "0x30e3892feeE48f8fa96FB272ae6d9d274940B11b"
+    ],
+    1
+  ],
+  "finalizedReadback": {
+    "owner": "0x30e3892feee48f8fa96fb272ae6d9d274940b11b",
+    "electorate": [
+      "0x30e3892feee48f8fa96fb272ae6d9d274940b11b"
+    ],
+    "quorum": 1,
+    "current_version": 1
+  },
+  "verified_live": [
+    "constructor deployment FINALIZED/SUCCESS",
+    "finalized get_configuration readback"
+  ],
+  "not_verified_live": [
+    "nondeterministic write flows",
+    "real web/LLM consensus",
+    "full lifecycle",
+    "gas costs"
+  ],
+  "source_evidence_file": "outputs/genlayer-builders-2026-10-21/02-independent-ic-deployments.json"
+}

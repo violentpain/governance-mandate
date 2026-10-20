@@ -1,0 +1,1 @@
+{"ok":true,"lint":{"ok":true,"passed":3},"validate":{"ok":true,"contract":"GovernanceMandate","methods":13,"view_methods":5,"write_methods":8,"ctor_params":3}}
